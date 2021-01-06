@@ -2,6 +2,8 @@
 
 var hours = ['6 Am', '7 Am', '8 Am', '9 Am', '10 Am', '11 Am', '12 Am',
     '1 Pm', '2 Pm', '3 Pm', '4 Pm', '5 Pm', '6 Pm', '7 Pm'];
+var storeObjects = [];
+
 //======================================================================
 // Constructor
 //----------------------------------------------------------------------
@@ -15,6 +17,7 @@ function Store(minCust11, maxCust, avgCookiePerHour, storeName) {
     this.storeName = storeName;
     this.cookiesperhour = [];
     this.total = 0;
+    storeObjects.push(this);
 }
 
 //======================================================================
@@ -43,6 +46,22 @@ Store.prototype.cookieAmount = function () {
 var containerII = document.getElementById('tableContainer');
 var table = document.createElement('table');
 
+function headerRender() {
+    // if (seattle.storeName === 'Seattle') {
+    var tr = document.createElement('tr');
+    for (var i = -1; i < (hours.length + 1); i++) {
+        var th = document.createElement('th');
+        th.textContent = hours[i];
+        tr.appendChild(th);
+        table.appendChild(tr);
+    }
+    th.textContent = 'total';
+    tr.appendChild(th);
+    table.appendChild(tr);
+    // }
+
+}
+
 Store.prototype.render = function () {
     // var container = document.getElementById('listContainer');
     // var h2 = document.createElement('h2');
@@ -67,18 +86,18 @@ Store.prototype.render = function () {
     // var table = document.createElement('table');
     containerII.appendChild(table);
 
-    if (this.storeName === 'Seattle') {
-        var tr = document.createElement('tr');
-        for (var i = -1; i < (hours.length + 1); i++) {
-            var th = document.createElement('th');
-            th.textContent = hours[i];
-            tr.appendChild(th);
-            table.appendChild(tr);
-        }
-        th.textContent = 'total';
-        tr.appendChild(th);
-        table.appendChild(tr);
-    }
+    // if (this.storeName === 'Seattle') {
+    //     var tr = document.createElement('tr');
+    //     for (var i = -1; i < (hours.length + 1); i++) {
+    //         var th = document.createElement('th');
+    //         th.textContent = hours[i];
+    //         tr.appendChild(th);
+    //         table.appendChild(tr);
+    //     }
+    //     th.textContent = 'total';
+    //     tr.appendChild(th);
+    //     table.appendChild(tr);
+    // }
 
     var tr2 = document.createElement('tr');
     table.appendChild(tr2);
@@ -99,7 +118,7 @@ Store.prototype.render = function () {
     // var tr4 = document.createElement('tr');
     // var totalOfHour = document.createElement('td');
     // Z = ;
-    // console.log(totalArray);                       trial to calculate total per our!
+    //                                                 trial to calculate total per our!
     //totalOfHour.textContent = Z;
     //tr4.appendChild(totalOfHour);
 
@@ -117,9 +136,36 @@ function randomAbdallah(fmin, fmax) {
 
 }
 
+function tableFooterRender() {
+    var lastRow = document.createElement('tr');
+    var finalTotal = 0;
+    var totalRow = document.createElement('td');
+    totalRow.textContent = 'Total';
+    lastRow.appendChild(totalRow);
+    for (var hour = 0; hour < (hours.length); hour++) {
+        var hoursDataCell = document.createElement('td');
+        var SumHour = 0;
+        for (var storr = 0; storr < storeObjects.length; storr++) {
+            SumHour += storeObjects[storr].cookiesperhour[hour];
+        }
+        finalTotal += SumHour;
+
+        hoursDataCell.textContent = SumHour;
+        lastRow.appendChild(hoursDataCell);
+    }
+    var totalOfTotals = document.createElement('td');
+    totalOfTotals.textContent = finalTotal;
+    lastRow.appendChild(totalOfTotals);
+    table.appendChild(lastRow);
+}
+
+
+
 //================================================
 // Constructor-Calls for different store location.
 //================================================
+headerRender();
+
 var seattle = new Store(23, 65, 6.3, 'Seattle');
 seattle.cookieAmount();
 seattle.render();
@@ -140,7 +186,12 @@ var lima = new Store(2, 16, 4.6, 'Lima');
 lima.cookieAmount();
 lima.render();
 
+var amman = new Store(5, 17, 5.7, 'Amman');
+amman.cookieAmount();
+amman.render();
 
+
+tableFooterRender();
 
 
 
