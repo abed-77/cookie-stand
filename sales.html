@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,48 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Sales</title>
 </head>
-<body>
-    <main>
-        <nav id='jsEntry'>
 
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sales.html">Sales</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
         </nav>
+    </header>
+    <main>
+        <!-- <nav id='jsEntry'></nav> -->
         <div id='listContainer'></div>
         <div id='tableContainer'></div>
-    </main>
-</body>
-<footer>
-    <!-- <script src='js/app.js'></script> -->
-    <script src='js/app2.js'></script>
-</footer>
-</html>
+        <section>
+            <h2>Fill The Form To Add a City</h2>
+            <form id='formId'>
+                <fieldset>
+                    <label for="storeLocation">Store Location:</label><br>
+                    <input type="text" id="storeLocation" name="storLocation"><br>
 
+                    <label for="minCust">Minimum Number of costumers:</label><br>
+                    <input type="number" id="minCust" name="minCust"><br>
+
+                    <label for="maxCust">Maximum Number of costumers::</label><br>
+                    <input type="number" id="maxCust" name="maxCust"><br>
+
+                    <label for="avgcookiePerHour">Average Cookies Per Hour:</label><br>
+                    <input type="number" id="avgcookiePerHour" name="avgcookiePerHour"><br> <br>
+
+                    <input type="submit" value="Submit Infomation">
+                </fieldset>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <!-- <script src='js/app.js'></script> -->
+        <script src='js/app2.js'></script>
+    </footer>
+</body>
+
+</html>

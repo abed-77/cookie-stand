@@ -159,8 +159,6 @@ function tableFooterRender() {
     table.appendChild(lastRow);
 }
 
-
-
 //================================================
 // Constructor-Calls for different store location.
 //================================================
@@ -191,7 +189,31 @@ amman.cookieAmount();
 amman.render();
 
 
-tableFooterRender();
+
+//================================================
+//================================================
+// This global function is for lab-09 forms
+
+var formId = document.getElementById('formId');
+formId.addEventListener('submit', function (event) {
+    event.preventDefault();
+    // console.log((event.target.storLocation.value));
+    // console.log((event.target.minCust.value));
+    // console.log((event.target.maxCust.value));
+    // console.log((event.target.avgcookiePerHour.value));
+
+    var storelocation = event.target.storLocation.value;
+    var minCust = event.target.minCust.value;
+    var maxCust = event.target.maxCust.value;
+    var avgcookiePerHour = event.target.avgcookiePerHour.value;
+
+    var newStore = new Store(minCust, maxCust, avgcookiePerHour, storelocation);
+
+    console.log(newStore);
+    newStore.cookieAmount();
+    newStore.render();
+    tableFooterRender();
+});
 
 
 

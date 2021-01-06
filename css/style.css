@@ -1,3 +1,23 @@
+nav ul li {
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline;
+  padding: 10px;
+  margin-right: 20%;
+}
+header{
+  display: block;
+  align-self: auto;
+  }
+
+main section form {
+  padding: 155 px;
+  margin: 155 px;
+  width: 85%;
+  display: block;
+}
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+
 table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
