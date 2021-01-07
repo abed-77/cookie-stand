@@ -159,40 +159,53 @@ function tableFooterRender() {
     table.appendChild(lastRow);
 }
 
+function clearTable() {
+    var bodyRef = document.getElementById('tableContainer').getElementsByTagName('table')[0];
+    bodyRef.innerHTML = '';
+}
+
 //================================================
 // Constructor-Calls for different store location.
 //================================================
+//  Calls for constructer has been grouped in one function
+
+function basicStores() {
+    var seattle = new Store(23, 65, 6.3, 'Seattle');
+    seattle.cookieAmount();
+    seattle.render();
+
+    var tokyo = new Store(3, 24, 1.2, 'Tokyo');
+    tokyo.cookieAmount();
+    tokyo.render();
+
+    var dubai = new Store(11, 38, 3.7, 'Dubai');
+    dubai.cookieAmount();
+    dubai.render();
+
+    var paris = new Store(20, 38, 2.3, 'Paris');
+    paris.cookieAmount();
+    paris.render();
+
+    var lima = new Store(2, 16, 4.6, 'Lima');
+    lima.cookieAmount();
+    lima.render();
+
+    var amman = new Store(5, 17, 5.7, 'Amman');
+    amman.cookieAmount();
+    amman.render();
+}
+
+//================================================
+// DEFAULT RENDERING
+//================================================
 headerRender();
-
-var seattle = new Store(23, 65, 6.3, 'Seattle');
-seattle.cookieAmount();
-seattle.render();
-
-var tokyo = new Store(3, 24, 1.2, 'Tokyo');
-tokyo.cookieAmount();
-tokyo.render();
-
-var dubai = new Store(11, 38, 3.7, 'Dubai');
-dubai.cookieAmount();
-dubai.render();
-
-var paris = new Store(20, 38, 2.3, 'Paris');
-paris.cookieAmount();
-paris.render();
-
-var lima = new Store(2, 16, 4.6, 'Lima');
-lima.cookieAmount();
-lima.render();
-
-var amman = new Store(5, 17, 5.7, 'Amman');
-amman.cookieAmount();
-amman.render();
-
-
+basicStores();
+tableFooterRender();
 
 //================================================
 //================================================
 // This global function is for lab-09 forms
+// Adding a form listener to add stores to salmon-cookie business.
 
 var formId = document.getElementById('formId');
 formId.addEventListener('submit', function (event) {
@@ -209,14 +222,16 @@ formId.addEventListener('submit', function (event) {
 
     var newStore = new Store(minCust, maxCust, avgcookiePerHour, storelocation);
 
-    console.log(newStore);
+    // console.log(newStore);
+    clearTable();
+    headerRender();
+    basicStores();
     newStore.cookieAmount();
     newStore.render();
     tableFooterRender();
+    // basicStores.push(newStore);
+
 });
-
-
-
 
 
 
