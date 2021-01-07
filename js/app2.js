@@ -159,47 +159,41 @@ function tableFooterRender() {
     table.appendChild(lastRow);
 }
 
-function clearTable() {
-    var bodyRef = document.getElementById('tableContainer').getElementsByTagName('table')[0];
-    bodyRef.innerHTML = '';
-}
+// function clearTable() {
+//     var bodyRef = document.getElementById('tableContainer').getElementsByTagName('table')[0];
+//     bodyRef.innerHTML = '';
+// }
 
 //================================================
 // Constructor-Calls for different store location.
 //================================================
 //  Calls for constructer has been grouped in one function
 
-function basicStores() {
-    var seattle = new Store(23, 65, 6.3, 'Seattle');
-    seattle.cookieAmount();
-    seattle.render();
 
-    var tokyo = new Store(3, 24, 1.2, 'Tokyo');
-    tokyo.cookieAmount();
-    tokyo.render();
+var seattle = new Store(23, 65, 6.3, 'Seattle');
 
-    var dubai = new Store(11, 38, 3.7, 'Dubai');
-    dubai.cookieAmount();
-    dubai.render();
+var tokyo = new Store(3, 24, 1.2, 'Tokyo');
 
-    var paris = new Store(20, 38, 2.3, 'Paris');
-    paris.cookieAmount();
-    paris.render();
+var dubai = new Store(11, 38, 3.7, 'Dubai');
 
-    var lima = new Store(2, 16, 4.6, 'Lima');
-    lima.cookieAmount();
-    lima.render();
+var paris = new Store(20, 38, 2.3, 'Paris');
 
-    var amman = new Store(5, 17, 5.7, 'Amman');
-    amman.cookieAmount();
-    amman.render();
-}
+var lima = new Store(2, 16, 4.6, 'Lima');
+
+var amman = new Store(5, 17, 5.7, 'Amman');
+
+
 
 //================================================
 // DEFAULT RENDERING
 //================================================
 headerRender();
-basicStores();
+
+for (let index = 0; index < storeObjects.length; index++) {
+    storeObjects[index].cookieAmount();
+    storeObjects[index].render();
+}
+
 tableFooterRender();
 
 //================================================
@@ -223,18 +217,23 @@ formId.addEventListener('submit', function (event) {
     var newStore = new Store(minCust, maxCust, avgcookiePerHour, storelocation);
 
     // console.log(newStore);
-    clearTable();
+    // clearTable();
+    table.innerHTML = '';
     headerRender();
-    basicStores();
-    newStore.cookieAmount();
-    newStore.render();
+
+    for (let index = 0; index < storeObjects.length; index++) {
+        storeObjects[index].cookieAmount();
+        storeObjects[index].render();
+    }
+
     tableFooterRender();
+
+    // newStore.cookieAmount();
+    // newStore.render();
+    // tableFooterRender();
     // basicStores.push(newStore);
 
 });
-
-
-
 
 
 
